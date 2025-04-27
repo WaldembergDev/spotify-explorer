@@ -40,7 +40,7 @@ def get_artist_top_tracks(id_artist, token_spotify):
     try:
         response.raise_for_status()
         data = response.json().get('tracks')
-        musics = {music.get('name'): music.get('external_urls').get('spotify') for music in data}
+        musics = [{'name': music.get('name'), 'url': music.get('external_urls').get('spotify'), 'popularity': music.get('popularity')} for music in data]
         return musics
     except requests.HTTPError as e:
         print(f'Erro ao fazer a requisição: {e}')

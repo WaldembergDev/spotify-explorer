@@ -5,13 +5,35 @@
     <div class="container">
         <h1 class="text-center mt-5">Web App Spotify</h1>
         <p>Dados da API do spotify (<a target="_blank" href="https://developer.spotify.com/documentation/web-api">https://developer.spotify.com/documentation/web-api</a>)</p>
-            <form class="row g-3">
-                <div class="col-8">
-                  <input type="password" class="form-control" id="inputArtist" placeholder="Busque um artista">
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-primary mb-3">Buscar artista</button>
-                </div>
-              </form>
+        <form method="POST" action="{% url 'home' %}" class="row g-3">
+            {% csrf_token %}
+            <div class="col-8">
+                <input name="artist" type="text" class="form-control" id="inputArtist" placeholder="Busque um artista">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Buscar artista</button>
+            </div>
+        </form>
+        {% if musics %}
+        <h2 class="text-center">Artista: {{name_artist}}</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Músic/Link</th>
+                <th scope="col">Popularidade</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for music in musics %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a href="{{music.url}}" target="_blank">{{music.name}}</a></td>
+                <td>{{music.popularity}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>            
+        {% endif %}    
     </div>    
 {% endblock %}
