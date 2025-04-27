@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'artist_hits_finder.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_app_spotify.settings')
 
 application = get_wsgi_application()

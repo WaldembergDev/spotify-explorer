@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'artist_hits_finder.urls'
+ROOT_URLCONF = 'django_app_spotify.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'artist_hits_finder.wsgi.application'
+WSGI_APPLICATION = 'django_app_spotify.wsgi.application'
 
 
 # Database
