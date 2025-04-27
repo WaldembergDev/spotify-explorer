@@ -9,6 +9,7 @@ from datetime import date, datetime
 from datetime import timedelta
 from django.utils import timezone
 
+
 load_dotenv(Path('.venv/.env'))
 
 # Create your views here.
