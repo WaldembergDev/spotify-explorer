@@ -18,6 +18,7 @@
               <input name="password" type="password" class="form-control" id="InputPassword">
             </div>
             <button type="submit" class="btn btn-primary mb-3">Logar</button>
+            <p>Novo usuário? Registre-se clicando <a href="{% url 'register' %}">aqui</a></p>
           </form>
           {% if messages %}
             {% for message in messages %}
