@@ -6,6 +6,9 @@ from django.contrib import messages
 
 # Create your views here.
 def login(request):
+    # verificando se existe algum usuário logado
+    if request.user.is_authenticated:
+        return redirect('/plataform/home')
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
@@ -46,3 +49,7 @@ def register(request):
         user.save()
         messages.add_message(request, constants.SUCCESS, 'Conta criada com sucesso!')
         return redirect('/accounts/register')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/accounts/login')
