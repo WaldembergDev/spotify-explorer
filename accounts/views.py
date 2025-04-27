@@ -11,10 +11,17 @@ def login(request):
     else:
         email = request.POST.get('email')
         password = request.POST.get('password')
+        if not email:
+            messages.add_message(request, constants.WARNING, 'O e-mail deve ser preenchido!')
+            return redirect('/accounts/login')
+        if not password:
+            messages.add_message(request, constants.WARNING, 'A senha deve ser preenchida!')
+            return redirect('/accounts/login')
         user = auth.authenticate(request, email = email, password = password)
+        print(user)
         if user:
             auth.login(request, user)
-            redirect('/plataform/home')
+            return redirect('/plataform/home')
         else:
             messages.add_message(request, constants.WARNING, message='E-mail ou senha inválidos!')
             return render(request, 'login.html')
@@ -30,7 +37,7 @@ def register(request):
         confirm_password = request.POST.get('confirm_password')
         if password != confirm_password:
             pass
-        user = CustomUser(
+        user = CustomUser.objects.create_user(
             first_name = first_name,
             surname = surname,
             email = email,
@@ -39,4 +46,3 @@ def register(request):
         user.save()
         messages.add_message(request, constants.SUCCESS, 'Conta criada com sucesso!')
         return redirect('/accounts/register')
-            

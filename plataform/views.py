@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from spotify_integration.service.spotify_artist_service import get_id_artist, get_artist_top_tracks
 from spotify_integration.service.spotify_auth_service import get_token_valid
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def home(request):
     if request.method == 'GET':
         return render(request, 'home.html')
