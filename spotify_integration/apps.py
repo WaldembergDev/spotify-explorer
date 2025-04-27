@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AuthorizationSpotifyConfig(AppConfig):
+class SpotifyIntegrationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'authorization_spotify'
+    name = 'spotify_integration'

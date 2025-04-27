@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authorization_spotify',
+    'spotify_integration',
     'plataform',
     'accounts'
 ]
