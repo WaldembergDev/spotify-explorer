@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-from .models import Token
+from ..models import Token
 from datetime import date, datetime
 from datetime import timedelta
 from django.utils import timezone
@@ -56,11 +56,13 @@ def save_token():
     return token
 
 def get_token_valid():
+    # obtendo o último token
     last_token = Token.objects.last()
-
-    # verificando se agora é maior do que a validade do último token gerado
-    if timezone.now() > last_token.expires_in:
-        new_token = save_token()
-        return new_token.access_token        
-    else:
+    # verificando se existe um token ou se o último token criado já está expirado
+    if not last_token or timezone.now() > last_token.expires_in:
+        last_token = save_token()
+    # verificando se existe o token
+    if last_token:
         return last_token.access_token
+    else:
+        return None
